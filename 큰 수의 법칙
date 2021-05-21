@@ -1,0 +1,17 @@
+N, M, K = map(int,input().split())
+numbers = list(map(int,input().split()))
+first = max(numbers)
+numbers.remove(first)
+second = max(numbers)
+count = 1
+result = first
+
+while count < M:
+  if count % K == 0:
+    result += second
+    count += 1
+  else:
+    result += first
+    count += 1
+    
+print(result)

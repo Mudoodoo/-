@@ -1,0 +1,13 @@
+N, M, K = map(int,input().split())
+numbers = list(map(int,input().split()))
+numbers.sort() # 1빠와 2빠 구할 때는 sort로 정렬 후 인덱싱
+first, second = numbers[N-1], numbers[N-2]
+
+count = int(M / (K + 1)) * K #무작정 더하면 시간초과니 규칙성을 찾아서 first가 더해지는 횟수를 count 변수로 계산한다
+count += M % (K + 1)
+
+result = 0
+result += count * first
+result += (M - count) * second
+
+print(result)

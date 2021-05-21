@@ -1,0 +1,10 @@
+col, row = map(int,input().split())
+cards = [[0 for i in range(row)] for j in range(col)] 
+numbers = []
+minCard = 0
+
+for i in range(col):
+  cards[i] = list(map(int,input().split()))
+  numbers.append(min(cards[i]))
+  
+print(max(numbers))

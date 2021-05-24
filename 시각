@@ -1,0 +1,12 @@
+n = int(input())
+time = n*3600 + 59*60 + 59
+count = 0
+
+for i in range(0, time + 1):
+  hour = str(i // 3600 % 24)
+  minute = str(i // 60 % 60)
+  second = str(i % 60)
+  if str(3) in hour or str(3) in minute or str(3) in second:
+    count += 1
+
+print(count)

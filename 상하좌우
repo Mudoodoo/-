@@ -1,0 +1,13 @@
+n = int(input())
+moves = list(input().split())
+RL = 1; UD = 1
+for move in moves:
+  if move == 'R' and RL != 5:
+    RL += 1
+  elif move == 'L' and RL != 1:
+    RL -= 1
+  elif move == 'D' and UD != 5:
+    UD += 1
+  elif move == 'U' and UD != 1:
+    UD -= 1
+print(UD, RL)

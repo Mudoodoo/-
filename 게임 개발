@@ -1,0 +1,42 @@
+col, row = map(int,input().split())
+x, y, direction = map(int,input().split())
+world = []
+dx = [0,1,0,-1]
+dy = [-1,0,1,0]
+count = 1
+turnTime = 0
+for i in range(col):
+  world.append(list(map(int,input().split())))
+
+world[y][x] = 2
+
+while True:
+  direction -= 1
+  if direction == -1:
+    direction = 3
+  nx = x + dx[direction]
+  ny = y + dy[direction]
+  if world[ny][nx] == 0:
+    x = nx
+    y = ny
+    world[y][x] = 2
+    count += 1
+    turnTime = 0
+  else:
+    turnTime += 1
+  if turnTime == 4:
+    nx = x - dx[direction]
+    ny = y - dy[direction]
+    if world[ny][nx] == 1:
+      break
+    elif world[ny][nx] == 0:
+        x = nx
+        y = ny
+        world[ny][nx] = 2
+        count += 1
+    else:
+        x = nx
+        y = ny
+    turnTime = 0
+
+print(count)

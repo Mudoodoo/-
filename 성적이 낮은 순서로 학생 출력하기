@@ -1,0 +1,11 @@
+n = int(input())
+scores = []
+
+for _ in range(n):
+  input_data = input().split()
+  scores.append([input_data[0], int(input_data[1])])
+
+scores = sorted(scores, key = lambda data: data[1])
+
+for data in scores:
+  print(data[0], end = ' ')

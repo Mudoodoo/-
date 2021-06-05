@@ -1,0 +1,25 @@
+import sys
+
+n, m = map(int, sys.stdin.readline().rstrip().split())
+cakes = list(map(int, sys.stdin.readline().split()))
+array = list(range(max(cakes)))
+
+def binarySearch(array, start, end):
+  while start <= end:
+    mid = (start + end) // 2
+    total = 0
+
+    for cake in cakes:
+      if cake > array[mid]:
+        total += cake - array[mid]
+
+    if total < m:
+      end = mid - 1
+    else:
+      result = array[mid]
+      start = mid + 1
+  
+  return result
+
+result = binarySearch(array, 0, len(array)-1)
+print(result)

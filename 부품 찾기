@@ -1,0 +1,26 @@
+import sys
+
+n = int(input())
+parts = list(map(int, sys.stdin.readline().rstrip().split()))
+m = int(input())
+demands = list(map(int, sys.stdin.readline().rstrip().split()))
+
+parts.sort()
+
+def binarySearch(array, start, end, target):
+  if start > end:
+    return False
+  mid = (start + end) // 2
+  if array[mid] == target:
+    return True
+  if array[mid] > target:
+    return binarySearch(array, start, mid-1, target)
+  if array[mid] < target:
+    return binarySearch(array, mid+1, end, target)
+
+for demand in demands:
+  result = binarySearch(parts, 0, len(parts)-1, demand)
+  if result == True:
+    print('yes', end = ' ')
+  else:
+    print('no', end = ' ')

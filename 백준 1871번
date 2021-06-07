@@ -1,0 +1,15 @@
+case = int(input())
+for _ in range(case):
+  input_data = input()
+  letterValue = 0
+  letters = input_data.split('-')[0]
+  numbers = input_data.split('-')[1]
+  for i in range(3):
+    letterValue += (ord(letters[i]) - ord('A')) * 26 ** (2 - i)
+
+  result = abs(letterValue - int(numbers))
+
+  if result <= 100:
+    print('nice')
+  else:
+    print('not nice')

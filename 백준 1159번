@@ -1,0 +1,23 @@
+names = []
+lastNames = []
+result = []
+
+for _ in range(int(input())):
+  names.append(input())
+
+for name in names:
+  lastNames.append(name[0])
+
+lastNames_set = set(lastNames)
+
+for lastname in lastNames_set:
+  if lastNames.count(lastname) >= 5:
+    result.append(lastname)
+
+result.sort()
+
+if len(result) > 0:
+    for i in result:
+        print(i, end = '')
+else:
+    print('PREDAJA')

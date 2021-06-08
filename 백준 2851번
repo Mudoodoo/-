@@ -1,0 +1,22 @@
+scores = []
+diff = []
+
+for _ in range(10):
+  scores.append(int(input()))
+
+dp = [0] * 10
+dp[0] = scores[0]
+
+#1번째부터 10번째까지의 점수의 합을 리스트로 나타냄
+for i in range(1, 10):
+  dp[i] = dp[i-1] + scores[i]
+
+#각 점수의 합이 100과 얼마나 차이나나를 기록
+for i in range(10):
+  diff.append(dp[i] - 100)
+diff_abs = list(map(abs, diff))
+
+if min(diff_abs) in diff:
+  print(100 + min(diff_abs))
+elif -min(diff_abs) in diff:
+  print(100 - min(diff_abs))

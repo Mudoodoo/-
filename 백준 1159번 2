@@ -1,0 +1,19 @@
+from collections import Counter
+
+names = []
+result = []
+
+for _ in range(int(input())):
+  names.append(input()[0])
+
+for word, cnt in Counter(names).items():
+  if cnt >= 5:
+    result.append(word)
+
+result.sort()
+
+if len(result) > 0:
+  for i in result:
+    print(i, end = '')
+else:
+  print('PREDAJA')

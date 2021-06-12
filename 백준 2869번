@@ -1,0 +1,10 @@
+up, down, tree = map(int, input().split())
+result = 0
+result += (tree - up) // (up - down)
+tree -= (up - down) * result
+if tree <= up:
+  result += 1
+else:
+  result += 2
+
+print(result)

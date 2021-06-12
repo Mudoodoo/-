@@ -1,7 +1,6 @@
 n = int(input())
 score = []
 result = 0
-flag = True
 
 for _ in range(n):
   score.append(int(input()))
@@ -18,6 +17,6 @@ def adjustment(score):
     if score[i] >= score[i+1]:
       adjustment(score)
 
-adjustment(score)
+  return result
 
-print(result)
+print(adjustment(score))

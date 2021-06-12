@@ -1,0 +1,23 @@
+n = int(input())
+score = []
+result = 0
+flag = True
+
+for _ in range(n):
+  score.append(int(input()))
+
+def adjustment(score):
+  global result
+
+  for i in range(n-1):
+    if score[i] >= score[i+1]:
+      result += score[i] - score[i+1] + 1
+      score[i] -= score[i] - score[i+1] + 1
+
+  for i in range(n-1):
+    if score[i] >= score[i+1]:
+      adjustment(score)
+
+adjustment(score)
+
+print(result)

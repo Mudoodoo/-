@@ -1,0 +1,16 @@
+n = int(input())
+letters = input()
+number = '0123456789'
+current = '0'
+result = 0
+
+for i in range(n):
+  if letters[i] in number:
+    current += letters[i]
+  else:
+    result += int(current)
+    current = '0'
+
+result += int(current)
+
+print(result)

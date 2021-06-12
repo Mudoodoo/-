@@ -1,0 +1,19 @@
+sugar = int(input())
+
+def delivery(sugar):
+  kilo5 = sugar // 5
+  while True:
+    remains = sugar - kilo5 * 5
+
+    if kilo5 < 0:
+      return -1
+    
+    if remains % 3 == 0:
+      kilo3 = remains // 3
+      return kilo5 + kilo3
+
+    else:
+      kilo5 -= 1
+      continue
+  
+print(delivery(sugar))

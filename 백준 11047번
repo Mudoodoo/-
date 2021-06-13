@@ -1,0 +1,17 @@
+import sys
+
+n, total = map(int, input().split())
+coins = []
+for _ in range(n):
+  coins.append(int(sys.stdin.readline().rstrip()))
+coins.sort(reverse = True)
+cnt = 0
+
+for coin in coins:
+  if coin > total:
+    continue
+  else:
+    cnt += total // coin
+    total %= coin
+
+print(cnt)

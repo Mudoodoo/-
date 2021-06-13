@@ -1,0 +1,14 @@
+case = 1
+
+while True:
+  oneTime, during, total = map(int, input().split())
+  result = 0
+
+  if oneTime == 0 and during == 0 and total == 0:
+    break
+  
+  result += (total // during) * oneTime
+  result += min(total % during, oneTime)
+
+  print("Case {0}: {1}".format(case, result))
+  case += 1

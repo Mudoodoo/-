@@ -1,0 +1,14 @@
+import sys
+
+ropes = []
+weights = []
+
+for _ in range(int(input())):
+  ropes.append(int(sys.stdin.readline().rstrip()))
+
+ropes.sort(reverse = True)
+
+for i in range(len(ropes)):
+  weights.append(ropes[i] * (i+1))
+
+print(max(weights))

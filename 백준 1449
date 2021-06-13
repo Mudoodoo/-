@@ -1,0 +1,21 @@
+n, tape = map(int, input().split())
+holes = list(map(int, input().split()))
+holes.sort()
+taped = [0] * len(holes)
+result = 0
+
+for i in range(len(holes)-1):
+  if taped[i] == 0:
+      taped[i] = 1
+      for j in range(1, len(holes) - i):
+        if holes[i + j] - holes[i] + 1 <= tape:
+          taped[i + j] = 1
+        else:
+          break
+      result += 1
+
+if taped[-1] == 0:
+  result += 1
+  taped[-1] = 1
+
+print(result)

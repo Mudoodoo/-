@@ -1,0 +1,37 @@
+import sys
+
+confs = []
+total = 0
+for _ in range(int(input())):
+  st, et = map(int, sys.stdin.readline().rstrip().split())
+  confs.append([st, et])
+  if et > total :
+    total = et
+
+cnt = 0
+while True:
+  min_diff = confs[0][1] - confs[0][0]
+  start, end = confs[0]
+
+  for i in range(1, len(confs)):
+    diff = confs[i][1] - confs[i][0]
+    if min_diff > diff:
+      min_diff = diff
+      start, end = confs[i]
+      continue
+    if min_diff == diff and start > confs[i][0]:
+        start, end = confs[i]
+
+  confs.remove([start, end])
+  for conf in confs:
+      if conf[1] < start or conf[0] >= end:
+          pass
+      else:
+          confs.remove(conf)
+
+  cnt += 1
+
+  if len(confs) == 0:
+      break
+
+print(cnt)

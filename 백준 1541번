@@ -1,0 +1,13 @@
+import sys
+
+input_data = sys.stdin.readline().rstrip().split('-')
+sumList = []
+
+for data in input_data:
+  sumList.append(sum(list(map(int, data.split('+')))))
+
+result = sumList[0]
+for i in sumList[1:]:
+  result -= i
+
+print(result)

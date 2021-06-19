@@ -1,0 +1,14 @@
+import sys
+
+n = int(sys.stdin.readline().rstrip())
+times = list(map(int, sys.stdin.readline().rstrip().split()))
+times.sort()
+timeList = []
+currentTime = 0
+
+for t in times:
+  currentTime += t
+  timeList.append(currentTime)
+
+result = sum(timeList)
+print(result)

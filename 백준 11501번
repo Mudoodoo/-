@@ -1,0 +1,15 @@
+import sys
+
+for _ in range(int(sys.stdin.readline().rstrip())):
+  t = int(sys.stdin.readline().rstrip())
+  stacks = list(map(int, sys.stdin.readline().rstrip().split()))
+  profit = 0
+  maxStack = stacks[-1]
+  for stack in stacks[::-1]:
+    if stack > maxStack:
+      maxStack = stack
+      continue
+    else:
+      profit += maxStack - stack
+  
+  print(profit)

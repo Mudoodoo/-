@@ -1,0 +1,10 @@
+arr = [1,5,6,8,7,6,10,2,3]
+
+cnt = [0] * (max(arr) + 1)
+
+for i in range(len(arr)):
+  cnt[arr[i]] += 1
+
+for i in range(len(cnt)):
+  for j in range(cnt[i]):
+    print(i, end = ' ')

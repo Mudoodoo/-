@@ -1,0 +1,37 @@
+import sys
+from collections import deque
+
+n, m, v = map(int, input().split())
+data = [[0] * (n+1) for x in range(n+1)]
+visited = [0] * (n+1)
+
+for _ in range(m):
+  a, b = map(int, sys.stdin.readline().rstrip().split())
+  data[a][b] = data[b][a] = 1
+
+def dfs(v):
+  visited[v] = 1
+  print(v, end = ' ')
+  for i in range(v, len(data)):
+    for j in range(len(data[i])):
+      if data[i][j] == 0:
+        continue
+      if data[i][j] == 1 and visited[j] == 0:
+        dfs(j)
+
+def bfs(v):
+  queue = deque([v])
+  while queue:
+    q = queue.popleft()
+    print(q, end = ' ')
+    visited[q] = 0
+    for i in range(n):
+      if data[q][i] == 0:
+        continue
+      if data[q][i] == 1 and visited[i] == 1:
+        queue.append(i)
+        visited[i] = 0
+
+dfs(v)
+print()
+bfs(v)

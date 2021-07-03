@@ -1,0 +1,28 @@
+import sys
+from collections import deque
+
+n, m = map(int, sys.stdin.readline().rstrip().split())
+graph = [[0] * (n+1) for _ in range(n+1)]
+visited = [0] * (n+1)
+result = 0
+
+for _ in range(m):
+  a, b = map(int, sys.stdin.readline().rstrip().split())
+  graph[a][b] = graph[b][a] = 1
+
+def bfs(i):
+  visited[i] = 1
+  queue = deque([i])
+  while queue:
+    v = queue.popleft()
+    for idx in range(1, n+1):
+      if graph[v][idx] == 1 and not visited[idx]:
+        queue.append(idx)
+        visited[idx] = 1
+
+for i in range(1, n+1):
+  if not visited[i]:
+    bfs(i)
+    result += 1
+
+print(result)

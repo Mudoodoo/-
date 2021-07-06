@@ -1,0 +1,43 @@
+import sys, heapq
+
+input = sys.stdin.readline
+dx = [1,0,-1,0]
+dy = [0,1,0,-1]
+INF = int(1e9)
+cnt = 0
+
+def aroundSearch(x, y):
+  for i in range(4):
+    nx = x + dx[i]
+    ny = y + dy[i]
+    if nx < 0 or ny < 0 or nx >= n or ny >= n:
+      continue
+
+def dijkstra():
+  queue = []
+  heapq.heappush(queue, (cave[0][0], (0,0)))
+  distance[0][0] = cave[0][0]
+  while queue:
+    dist, index = heapq.heappop(queue)
+    x, y = index
+    if distance[x][y] < dist:
+      continue
+    for i in range(4):
+      nx = x + dx[i]
+      ny = y + dy[i]
+      if nx < 0 or ny < 0 or nx >= n or ny >= n:
+        continue
+      cost = distance[x][y] + cave[nx][ny]
+      if cost < distance[nx][ny]:
+        distance[nx][ny] = cost
+        heapq.heappush(queue, (cost, (nx, ny)))
+
+while True:
+  n = int(input())
+  if n == 0:
+    break
+  cnt += 1
+  cave = [list(map(int, input().split())) for _ in range(n)]
+  distance = [[INF] * n for _ in range(n)]
+  dijkstra()
+  print('Problem {0}: {1}'.format(cnt, distance[n-1][n-1]))

@@ -1,0 +1,67 @@
+import sys, heapq
+
+input = sys.stdin.readline
+INF = int(1e9)
+n, m, hp, exp = map(int, input().split())
+heights = [0]
+heights += list(map(int, input().split()))
+graph = [[] for _ in range(n+1)]
+for _ in range(m):
+  a,b,c = map(int, input().split())
+  graph[a].append((b,c))
+  graph[b].append((a,c))
+
+def climb(start):
+  queue = []
+  heapq.heappush(queue, (0, start))
+  distance = [INF] * (n+1)
+  distance[start] = 0
+
+  while queue:
+    dist, now = heapq.heappop(queue)
+    if dist > distance[now]:
+      continue
+    for next_node, next_dist in graph[now]:
+      if heights[next_node] <= heights[now]:
+        continue
+      cost = dist + next_dist
+      if cost < distance[next_node]:
+        distance[next_node] = cost
+        heapq.heappush(queue, (cost, next_node))
+  
+  return distance
+
+def go_down(start):
+  queue = []
+  heapq.heappush(queue, (0, start))
+  distance = [INF] * (n+1)
+  distance[start] = 0
+
+  while queue:
+    dist, now = heapq.heappop(queue)
+    if dist > distance[now]:
+      continue
+    for next_node, next_dist in graph[now]:
+      if heights[next_node] >= heights[now]:
+        continue
+      cost = dist + next_dist
+      if cost < distance[next_node]:
+        distance[next_node] = cost
+        heapq.heappush(queue, (cost, next_node))
+
+  return distance
+
+achivs = []
+for i in range(1, n+1):
+  path1 = climb(1)
+  path2 = go_down(i)
+  totalHp = (path1[i] + path2[n]) * hp
+  totalExp = heights[i] * exp
+  achiv = totalExp - totalHp
+  if achiv >= 0:
+    achivs.append(achiv)
+
+if len(achivs) == 0:
+  print('Impossible')
+else:
+  print(max(achivs))

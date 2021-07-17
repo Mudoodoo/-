@@ -1,0 +1,16 @@
+import sys
+
+input = sys.stdin.readline
+n, m = map(int, input().split())
+nums = list(map(int, input().split()))
+
+for _ in range(m):
+  i, j = map(int, input().split())
+  result = 0
+
+  for idx in range(i-1, j):
+    result += nums[idx]
+
+  print(result)
+  
+ #시간 초과가 날 것을 알고 있었음

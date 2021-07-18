@@ -1,0 +1,17 @@
+import sys, heapq
+
+input = sys.stdin.readline
+n, m = map(int, input().split())
+card = list(map(int, input().split()))
+heapq.heapify(card)
+
+for _ in range(m):
+  card1 = heapq.heappop(card)
+  card2 = heapq.heappop(card)
+  sumValue = card1 + card2
+  heapq.heappush(card, sumValue)
+  heapq.heappush(card, sumValue)
+
+print(sum(card))
+
+#힙큐를 이용하여 매번 sort를 해줄 필요가 없기 때문에 시간복잡도가 더 적다

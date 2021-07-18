@@ -1,0 +1,45 @@
+import sys, heapq
+
+input = sys.stdin.readline
+n, capacity = map(int, input().split())
+m = int(input())
+boxList = []
+result = 0
+for _ in range(m):
+  boxList.append(list(map(int, input().split())))
+
+boxList.sort(key = lambda x: x[1])
+boxList.sort(key = lambda x: x[0])
+boxList.sort(reverse = True)
+
+truck = 0
+truckList = []
+for i in range(1, n+1):
+  #트럭에서 물건 빼기
+  while truckList:
+    end, much = heapq.heappop(truckList)
+    if i == end:
+      truck -= much
+      result += much
+    else:
+      heapq.heappush(truckList, [end, much])
+      break
+  #트럭에 물건 넣기
+  while boxList:
+    start, end, much = boxList.pop()
+    if i == start:
+      if truck + much <= capacity:
+        truck += much
+        heapq.heappush(truckList, [end, much])
+      else:
+        heapq.heappush(truckList, [end, capacity - truck])
+        truck = capacity
+    else:
+      boxList.append([start, end, much])
+      break
+  print(truckList)
+  print(result)
+
+print(result)
+
+#틀린거 알고 있음

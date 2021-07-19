@@ -1,0 +1,28 @@
+import sys, heapq
+
+input = sys.stdin.readline
+n, k = map(int, input().split())
+
+gem_list = []
+for _ in range(n):
+  m, v = map(int, input().split())
+  gem_list.append((m, v))
+
+bag_list = []
+for _ in range(k):
+  bag_list.append(int(input()))
+
+gem_list.sort()
+bag_list.sort()
+
+temp = []
+result = 0
+for bag in bag_list:
+  while gem_list and bag >= gem_list[0][0]:
+    heapq.heappush(temp, -gem_list[0][1])
+    heapq.heappop(gem_list)
+
+  if temp:
+    result += heapq.heappop(temp)
+
+print(-result)

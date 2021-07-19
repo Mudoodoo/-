@@ -1,0 +1,18 @@
+import sys, heapq
+
+input = sys.stdin.readline
+n = int(input())
+data_list = []
+for _ in range(n):
+  dead, ramen = map(int, input().split())
+  data_list.append((dead, ramen))
+
+data_list.sort()
+myRamen = []
+
+for dead, ramen in data_list:
+  heapq.heappush(myRamen, ramen)
+  if dead < len(myRamen):
+    heapq.heappop(myRamen)
+
+print(sum(myRamen))

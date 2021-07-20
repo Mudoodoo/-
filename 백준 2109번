@@ -1,0 +1,19 @@
+import sys, heapq
+
+input = sys.stdin.readline
+n = int(input())
+
+univ = []
+for _ in range(n):
+  price, day = map(int, input().split())
+  univ.append((day, price))
+
+univ.sort()
+
+queue = []
+for day, price in univ:
+  heapq.heappush(queue, price)
+  if day < len(queue):
+    heapq.heappop(queue)
+
+print(sum(queue))

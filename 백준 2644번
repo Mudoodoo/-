@@ -1,0 +1,35 @@
+import sys
+from collections import deque
+
+input = sys.stdin.readline
+n = int(input())
+target1, target2 = map(int, input().split())
+m = int(input())
+
+graph = [[] for _ in range(n+1)]
+for _ in range(m):
+  a, b = map(int, input().split())
+  graph[a].append(b)
+  graph[b].append(a)
+
+def bfs(target1, target2):
+  visited = [False] * (n+1)
+  chon = [0] * (n+1)
+  queue = deque([target1])
+  visited[target1] = True
+
+  while queue:
+    v = queue.popleft()
+    
+    for data in graph[v]:
+      if not visited[data]:
+        queue.append(data)
+        visited[data] = True
+        chon[data] = chon[v] + 1
+
+  if chon[target2] == 0:
+    return -1
+  else:
+    return chon[target2]
+
+print(bfs(target1, target2))

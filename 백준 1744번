@@ -1,0 +1,37 @@
+import sys
+
+input = sys.stdin.readline
+n = int(input())
+
+plusNum = []
+minusNum = []
+for _ in range(n):
+  a = int(input())
+  if a > 0:
+    plusNum.append(a)
+  else:
+    minusNum.append(a)
+
+plusNum.sort()
+minusNum.sort(reverse = True)
+
+def pair(arr):
+  result = 0
+
+  while len(arr) >= 2:
+    a = arr.pop()
+    b = arr.pop()
+    if a == 1 or b == 1:
+        result += a + b
+    else:
+        result += a * b
+
+  if arr:
+    result += arr.pop()
+
+  return result
+
+plusResult = pair(plusNum)
+minusResult = pair(minusNum)
+
+print(plusResult + minusResult)
